@@ -8,20 +8,21 @@ addons:
    - llvm-toolchain-precise-3.5
    - ubuntu-toolchain-r-test
   packages:
-   - gcc-4.8
-   - g++-4.8
    - libedit-dev
    - llvm-3.5-dev
 
 ghc:
  - 7.8
 
+compiler:
+ - gcc-4.8
+
 before_install:
   - gcc --version
   - g++ --version
   - mkdir -p ${HOME}/choices/bin
-  - ln -s /usr/bin/gcc-4.8 ${HOME}/choices/bin
-  - ln -s /usr/bin/g++-4.8 ${HOME}/choices/bin
+  - ln -s /usr/bin/gcc-4.8 ${HOME}/choices/bin/gcc
+  - ln -s /usr/bin/g++-4.8 ${HOME}/choices/bin/g++
   - export PATH=${HOME}/choices/bin:${PATH}
   - gcc --version
   - g++ --version
