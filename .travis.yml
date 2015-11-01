@@ -19,8 +19,10 @@ ghc:
  - 7.8
 
 env:
-  - CC="gcc-4.8"
-  - CC="gcc-5"  
+  - CC="gcc-4.8" CI_FLAG="" CS_FLAG=""
+  - CC="gcc-4.8" CI_FLAG="--with-cc=gcc-4.8" CS_FLAG="--with-cc=gcc-4.8"
+  - CC="gcc-4.8" CI_FLAG="" CS_FLAG="--with-cc=gcc-4.8"
+  - CC="gcc-4.8" CI_FLAG="--with-gcc=gcc-4.8" CS_FLAG="--with-gcc=gcc-4.8"  
 
 before_install:
   - env
@@ -28,7 +30,7 @@ before_install:
   - ${CC} -v -std=c++11 foo.cc -o foo  
 
 install:
-  - cabal install --with-cc=${CC} --only-dependencies --enable-tests --force-reinstall llvm-general-pure/ llvm-general/
+  - cabal install ${CI_FLAG} --only-dependencies --enable-tests --force-reinstall llvm-general-pure/ llvm-general/
 
 script:
-  - cabal install --with-cc=${CC} --enable-tests llvm-general-pure/ llvm-general/
+  - cabal install ${CS_FLAG} --enable-tests llvm-general-pure/ llvm-general/
