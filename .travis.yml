@@ -18,7 +18,6 @@ ghc:
 
 env:
   - CC="gcc-4.8"
-  - CC="gcc-5"  
 
 before_install:
   - env
@@ -29,4 +28,4 @@ install:
   - cabal install --only-dependencies --enable-tests --force-reinstall llvm-general-pure/ llvm-general/
 
 script:
-  - cabal install --with-gcc=${CC} --with-gcc-options="-v" --enable-tests llvm-general-pure/ llvm-general/
+  - cabal install --with-gcc=${CC} --gcc-options="-v" --enable-tests llvm-general-pure/ llvm-general/
