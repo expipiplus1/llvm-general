@@ -11,7 +11,7 @@ addons:
    - llvm-3.5-dev
 
 ghc:
- - 7.10
+ - 7.8
 
 install:
   - cabal install --only-dependencies --enable-tests --force-reinstall llvm-general-pure/ llvm-general/
