@@ -8,6 +8,7 @@ addons:
    - llvm-toolchain-precise-3.5
    - ubuntu-toolchain-r-test
   packages:
+   - libedit-dev
    - llvm-3.5-dev
 
 ghc:
