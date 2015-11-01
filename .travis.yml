@@ -1,6 +1,6 @@
 sudo: false
 
-language: c
+language: haskell
 
 addons:
  apt:
@@ -22,21 +22,18 @@ compiler:
  - gcc-4.8
 
 env:
-  - LLVM_GENERAL_GCC_VERSION="4.8"
-  - LLVM_GENERAL_GCC_VERSION="5"
+  - LLVM_GENERAL_GCC_VERSION="gcc-4.8"
 
 before_install:
   - env
   - echo 'int main(int argc, char **argv) { return 0; }' >foo.cc
   - mkdir -p ${HOME}/choices/bin
   - ln -s /usr/bin/gcc-${LLVM_GENERAL_GCC_VERSION} ${HOME}/choices/bin/gcc
-  - ln -s /usr/bin/g++-${LLVM_GENERAL_GCC_VERSION} ${HOME}/choices/bin/g++
   - export PATH=${HOME}/choices/bin:${PATH}
   - gcc -v -std=c++11 foo.cc -o foo
-  - g++ -v -std=c++11 foo.cc -o foo
 
 install:
-  - cabal install --only-dependencies --enable-tests --force-reinstall llvm-general-pure/ llvm-general/
+  - cabal install --with-cc=${CC} --only-dependencies --enable-tests --force-reinstall llvm-general-pure/ llvm-general/
 
 script:
-  - cabal install --enable-tests llvm-general-pure/ llvm-general/
+  - cabal install --with-cc=${CC} --enable-tests llvm-general-pure/ llvm-general/
